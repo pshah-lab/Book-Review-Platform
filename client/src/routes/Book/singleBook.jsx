@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-function SingleBook() { // Function names should start with capital letters
-  const [data, setData] = useState({}); // Initialize state with an object, not an array
+function singleBook() {
+  const [data, setData] = useState([]);
 
-  const { slug } = useParams(); // Destructure the slug from the params
-
+  const { slug } = useParams();
   const baseUrl = `http://localhost:8000/api/books/${slug}`;
 
   useEffect(() => {
@@ -26,37 +25,47 @@ function SingleBook() { // Function names should start with capital letters
     };
 
     fetchData();
-  }, [slug]); // Include slug as a dependency to re-fetch when the slug changes
+  }, [slug]);
+
+  function StarRating({ numberOfStars }) {
+    const stars = [];
+    for (let i = 0; i < numberOfStars; i++) {
+        stars.push(<span key={i}>⭐</span>)
+    }
+    return <div>Rating: {stars}</div>
+  }
+
 
   return (
     <div>
       <Link to={"/books"}>🔙Books</Link>
+      {data.map((element) => (
+        <div className="bookdetails">
+          <div className="col-1">
+            <img
+              src={`http://localhost:8000/uploads/${element.thumbnail}`}
+              alt={element.title}
+            />
+            <br/>
+            <Link to={`/editbook/${element.slug}`}>✏️Edit</Link>
+          </div>
 
-      <div className="bookdetails">
-        <div className="col-1">
-          <img
-            src={`http://localhost:8000/uploads/${data.thumbnail}`}
-            alt={data.title}
-          />
-          <br />
-          <Link to={`/editbook/${data.slug}`}>✏️Edit</Link>
+          <div className="col-2">
+
+            <h1>{element.title}</h1>
+            <p>{element.description}</p>
+            <StarRating numberOfStars={element.stars} />
+            <p>Category</p> 
+            <ul>
+                {element.category.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+          </div>
         </div>
-
-        <div className="col-2">
-          <h1>{data.title}</h1>
-          <p>{data.description}</p>
-          <p>{data.stars}</p>
-
-          <p>Category</p>
-          <ul>
-            {data.category?.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
 
-export default SingleBook;
+export default singleBook;
