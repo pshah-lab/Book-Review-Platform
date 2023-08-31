@@ -47,8 +47,8 @@ function createBook() {
         setSlug("");
         // setSubmitted(true);
       } else {
-        // console.log("Failed to Submit Data");
-        console.log(response);
+        console.log("Failed to Submit Data");
+        // console.log(response);
       }
     } catch (error) {
       console.log(error);
