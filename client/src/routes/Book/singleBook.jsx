@@ -40,7 +40,7 @@ function singleBook() {
     <div>
       <Link to={"/books"}>🔙Books</Link>
       {data.map((element) => (
-        <div className="bookdetails">
+        <div className="bookdetails" key={element._id}>
           <div className="col-1">
             <img
               src={`http://localhost:8000/uploads/${element.thumbnail}`}
