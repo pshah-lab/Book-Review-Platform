@@ -15,10 +15,10 @@ function EditBook() {
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const [image, setImage] = useState(NoImageSelected);
+  const [image, setImage] = useState("");
 
   // Added this line
-  const [thumbnail, setThumbnail] = useState(null);
+  const [thumbnail, setThumbnail] = useState("");
 
   const fetchData = async () => {
     try {
@@ -29,15 +29,25 @@ function EditBook() {
       }
 
       const data = await response.json();
+    //   console.log(data);
 
-      setBookId(data._id);
+      {data.map(element => {
 
-      setTitle(data.title);
-      setSlug(data.slug);
-      setStar(data.stars);
-      setCategories(data.category);
-      setDescription(data.description);
-      setThumbnail(data.thumbnail);
+            // console.log(element);
+
+          setBookId(element._id);
+    
+          setTitle(element.title);
+          setSlug(element.slug);
+          setStar(element.stars);
+          setCategories(element.category);
+          setDescription(element.description);
+        //   console.log(element.thumbnail);
+          setThumbnail(element.thumbnail);
+
+
+      })}
+
     } catch (error) {
       console.log(error);
     }
@@ -187,7 +197,7 @@ function EditBook() {
                 onChange={handleCategoryChange}
               />
             </div>
-            <input type="submit" value="Add Book" />
+            <input type="submit" value="Update Book" />
           </div>
         </form>
       )}
