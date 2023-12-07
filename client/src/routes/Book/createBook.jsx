@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NoImageSelected from "../../assets/no-image-selected.jpg";
+import { VITE_BACKEND_URL } from "../../App";
 
 function CreateBook() {
   const [title, setTitle] = useState("");
@@ -26,7 +27,7 @@ function CreateBook() {
     formData.append("thumbnail", thumbnail);
 
     try {
-      const response = await fetch("http://localhost:8000/api/books", {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/books`, {
         method: "POST",
         body: formData,
       });

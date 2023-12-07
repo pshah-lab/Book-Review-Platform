@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import NoImageSelected from "../../assets/no-image-selected.jpg";
+import { VITE_BACKEND_URL } from "../../App";
 
 function EditBook() {
   const navigate = useNavigate();
   const urlSlug = useParams();
-  const baseUrl = `http://localhost:8000/api/books/${urlSlug.slug}`;
+  const baseUrl = `${VITE_BACKEND_URL}/api/books/${urlSlug.slug}`;
 
   const [bookId, setBookId] = useState("");
 

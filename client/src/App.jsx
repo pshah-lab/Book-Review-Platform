@@ -9,6 +9,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 
+export const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+
 function App() {
 
   return (
