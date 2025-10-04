@@ -185,12 +185,39 @@ BookProjectPrac/
 
 ## Deployment
 
-### Backend (Render/Heroku)
+### Vercel Deployment (Current)
+
+**Backend API:** https://server-g9z7piq0b-pshahlabs-projects.vercel.app
+**Frontend:** https://client-g2c9fnckj-pshahlabs-projects.vercel.app
+
+#### Environment Variables Required:
+
+**Backend:**
+- `MONGODB_URI` - MongoDB Atlas connection string
+- `JWT_SECRET` - JWT signing secret
+
+**Frontend:**
+- `VITE_BACKEND_URL` - Backend API URL (https://server-g9z7piq0b-pshahlabs-projects.vercel.app)
+
+#### Deployment Commands:
+```bash
+# Deploy backend
+cd server
+vercel --prod --yes
+
+# Deploy frontend  
+cd client
+vercel --prod --yes
+```
+
+### Alternative Deployment Options
+
+#### Backend (Render/Heroku)
 1. Connect your GitHub repository
 2. Set environment variables
 3. Deploy with Node.js buildpack
 
-### Frontend (Vercel/Netlify)
+#### Frontend (Netlify)
 1. Connect your GitHub repository
 2. Set build command: `npm run build`
 3. Set output directory: `dist`
