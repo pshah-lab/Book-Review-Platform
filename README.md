@@ -118,13 +118,7 @@ BookProjectPrac/
    npm install
    ```
 
-3. **Environment Variables**
-   Create a `.env` file in the server directory:
-   ```env
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/bookreview
-   JWT_SECRET=your-super-secret-jwt-key
-   PORT=8000
-   ```
+
 
 4. **Start the server**
    ```bash
