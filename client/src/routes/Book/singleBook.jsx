@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { VITE_BACKEND_URL } from "../../App";
 
 function singleBook() {
   const [book, setBook] = useState(null);
@@ -17,7 +16,7 @@ function singleBook() {
 
   const { slug } = useParams();
   const { user, token, isAuthenticated } = useAuth();
-  const baseUrl = `${VITE_BACKEND_URL}/api/books/${slug}`;
+  const baseUrl = `${import.meta.env.VITE_BACKEND_URL}/api/books/${slug}`;
 
   useEffect(() => {
     fetchBookData();
@@ -44,7 +43,7 @@ function singleBook() {
     try {
       if (!book) return;
       
-      const response = await fetch(`${VITE_BACKEND_URL}/api/reviews/book/${book._id}`);
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews/book/${book._id}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -69,7 +68,7 @@ function singleBook() {
     }
 
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/reviews`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +133,7 @@ function singleBook() {
       <div className="bookdetails">
         <div className="col-1">
           <img
-            src={`${VITE_BACKEND_URL}/uploads/${book.thumbnail}`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${book.thumbnail}`}
             alt={book.title}
             style={{ maxHeight: '300px' }}
           />

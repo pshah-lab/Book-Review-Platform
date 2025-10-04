@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { VITE_BACKEND_URL } from "../../App";
 
 const Book = () => {
-  const baseUrl = `${VITE_BACKEND_URL}/api/books`;
+  const baseUrl = `${import.meta.env.VITE_BACKEND_URL}/api/books`;
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -183,7 +182,7 @@ const Book = () => {
               <li key={book._id}>
                 <Link to={`/books/${book.slug}`}>
                   <img
-                    src={`${VITE_BACKEND_URL}/uploads/${book.thumbnail}`}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${book.thumbnail}`}
                     alt={book.title}
                   />
                   <h3>{book.title}</h3>

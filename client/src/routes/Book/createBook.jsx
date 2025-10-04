@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import NoImageSelected from "../../assets/no-image-selected.jpg";
-import { VITE_BACKEND_URL } from "../../App";
 
 function CreateBook() {
   const [title, setTitle] = useState("");
@@ -46,7 +45,7 @@ function CreateBook() {
     }
 
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/books`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/books`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`

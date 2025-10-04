@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import NoImageSelected from "../../assets/no-image-selected.jpg";
-import { VITE_BACKEND_URL } from "../../App";
 
 function EditBook() {
   const navigate = useNavigate();
   const urlSlug = useParams();
-  const baseUrl = `${VITE_BACKEND_URL}/api/books/${urlSlug.slug}`;
+  const baseUrl = `${import.meta.env.VITE_BACKEND_URL}/api/books/${urlSlug.slug}`;
   const { token } = useAuth();
 
   const [bookId, setBookId] = useState("");
@@ -84,7 +83,7 @@ function EditBook() {
     }
 
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/books/${bookId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/books/${bookId}`, {
         method: "PUT",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -123,7 +122,7 @@ function EditBook() {
 
     try {
       const response = await fetch(
-        `${VITE_BACKEND_URL}/api/books/${bookId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/books/${bookId}`,
         {
           method: "DELETE",
           headers: {
@@ -185,7 +184,7 @@ function EditBook() {
               <img src={`${image}`} alt="preview image" style={{ maxHeight: '200px', marginBottom: '10px' }} />
             ) : (
               <img
-                src={`${VITE_BACKEND_URL}/uploads/${thumbnail}`}
+                src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${thumbnail}`}
                 alt="preview image"
                 style={{ maxHeight: '200px', marginBottom: '10px' }}
               />
